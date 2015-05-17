@@ -9,6 +9,8 @@
 import UIKit
 import XCTest
 
+import Pitch_Perfect
+
 class Pitch_PerfectTests: XCTestCase {
     
     override func setUp() {
@@ -21,9 +23,22 @@ class Pitch_PerfectTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
+    func testRecordViewDidLoad()
+    {
+        // we only have access to this if we import our project above
+        let v = ViewController()
+        
+        // assert that the ViewController.view is not nil
+        XCTAssertNotNil(v.view, "Record View Did Not load")
+    }
+    
+    func testPlaybackViewDidLoad()
+    {
+        // we only have access to this if we import our project above
+        let v = PlaySoundsViewController()
+        
+        // assert that the ViewController.view is not nil
+        XCTAssertNotNil(v.view, "Playback View Did Not load")
     }
     
     func testPerformanceExample() {
