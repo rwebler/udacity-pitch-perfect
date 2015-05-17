@@ -24,6 +24,7 @@ class PlaySoundsViewController: UIViewController {
             println(soundUrl)
             audioPlayer = AVAudioPlayer(contentsOfURL: soundUrl, error: nil)
             audioPlayer.enableRate = true
+            audioPlayer.prepareToPlay()
         } else {
             println("File not found")
         }
@@ -40,17 +41,27 @@ class PlaySoundsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func snailSoundButtonAction(sender: UIButton) {
-        snailButton.enabled = false
-        // TODO: Play sound really slowly
-        
+    func playAudio(atRate: Float) {
         audioPlayer.stop()
-        audioPlayer.rate = 0.5
-        audioPlayer.prepareToPlay()
+        audioPlayer.rate = atRate
+        audioPlayer.currentTime = 0.0
         audioPlayer.play()
-        
+    }
+    
+    @IBAction func snailSoundButtonAction(sender: UIButton) {
+        //snailButton.enabled = false
+        playAudio(0.5)
     }
 
+    @IBAction func rabbitSoundButtonAction(sender: UIButton) {
+        //rabbitButton.enabled = false
+        playAudio(1.5)
+    }
+
+    @IBAction func stopPlaybackButtonAction(sender: UIButton) {
+        
+        audioPlayer.stop()
+    }
     /*
     // MARK: - Navigation
 
