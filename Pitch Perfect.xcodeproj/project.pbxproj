@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		F78CEA1E1B07C80A00A922FD /* PlaySoundsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78CEA1D1B07C80A00A922FD /* PlaySoundsViewController.swift */; };
 		F78CEA241B07D91100A922FD /* movie_quote.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F78CEA231B07D91100A922FD /* movie_quote.mp3 */; };
+		F78CEA281B0952A300A922FD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FF2C291B03640200B881FA /* ViewController.swift */; };
+		F78CEA291B09F6C200A922FD /* PlaySoundsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78CEA1D1B07C80A00A922FD /* PlaySoundsViewController.swift */; };
 		F7FF2C281B03640200B881FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FF2C271B03640200B881FA /* AppDelegate.swift */; };
 		F7FF2C2A1B03640200B881FA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FF2C291B03640200B881FA /* ViewController.swift */; };
 		F7FF2C2D1B03640200B881FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7FF2C2B1B03640200B881FA /* Main.storyboard */; };
@@ -229,6 +231,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F78CEA281B0952A300A922FD /* ViewController.swift in Sources */,
+				F78CEA291B09F6C200A922FD /* PlaySoundsViewController.swift in Sources */,
 				F7FF2C3E1B03640200B881FA /* Pitch_PerfectTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

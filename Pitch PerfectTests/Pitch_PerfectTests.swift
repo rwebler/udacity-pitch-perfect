@@ -21,16 +21,21 @@ class Pitch_PerfectTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
-    }
-    
-    func testPerformanceExample() {
+    /*func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measureBlock() {
             // Put the code you want to measure the time of here.
         }
+    }*/
+    
+    func testRecordingViewIsLoaded() {
+        var recordingViewController = ViewController()
+        XCTAssertNotNil(recordingViewController.view, "View not loaded for ViewController")
+    }
+    
+    func testPlaySoundsViewIsLoaded() {
+        var playSoundsViewController = PlaySoundsViewController()
+        XCTAssertNotNil(playSoundsViewController.view, "View not loaded for PlaySoundsViewController")
     }
     
 }
