@@ -14,20 +14,14 @@ class PlaySoundsViewController: UIViewController {
     @IBOutlet weak var snailButton: UIButton!
     
     var audioPlayer : AVAudioPlayer!
+    var receivedAudio : RecordedAudio!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        if var filePath = NSBundle.mainBundle().pathForResource("movie_quote", ofType: "mp3") {
-            var soundUrl = NSURL(fileURLWithPath: filePath)
-            println(soundUrl)
-            audioPlayer = AVAudioPlayer(contentsOfURL: soundUrl, error: nil)
-            audioPlayer.enableRate = true
-            audioPlayer.prepareToPlay()
-        } else {
-            println("File not found")
-        }
+        audioPlayer = AVAudioPlayer(contentsOfURL: receivedAudio.filePathUrl, error: nil)
+        audioPlayer.enableRate = true
+        audioPlayer.prepareToPlay()
     }
     
     override func viewWillAppear(animated: Bool) {

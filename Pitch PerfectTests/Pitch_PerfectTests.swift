@@ -29,8 +29,8 @@ class Pitch_PerfectTests: XCTestCase {
     }*/
     
     func testRecordingViewIsLoaded() {
-        var recordingViewController = ViewController()
-        XCTAssertNotNil(recordingViewController.view, "View not loaded for ViewController")
+        var recordSoundsViewController = RecordSoundsViewController()
+        XCTAssertNotNil(recordSoundsViewController.view, "View not loaded for RecordSoundsViewController")
     }
     
     func testPlaySoundsViewIsLoaded() {
