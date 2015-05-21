@@ -139,9 +139,19 @@
                                     <action selector="playChipmunkAudio:" destination="n7J-am-AXg" eventType="touchUpInside" id="0sS-N9-jFF"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pta-qa-boK">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="Vader">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="playDarthvaderAudio:" destination="n7J-am-AXg" eventType="touchUpInside" id="KKV-tQ-BNL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="pta-qa-boK" secondAttribute="trailing" constant="25" id="3h8-b9-YJ6"/>
                             <constraint firstItem="dRC-kK-z1o" firstAttribute="top" secondItem="57u-86-svD" secondAttribute="bottom" constant="20" id="52z-sF-1OG"/>
                             <constraint firstItem="faA-ur-qb3" firstAttribute="top" secondItem="GmD-zw-Nm8" secondAttribute="bottom" constant="50" id="94c-MO-NJ2"/>
                             <constraint firstItem="GmD-zw-Nm8" firstAttribute="leading" secondItem="cug-Lw-oE8" secondAttribute="leadingMargin" constant="25" id="BJY-gG-JZ8">
@@ -154,6 +164,7 @@
                                 <variation key="heightClass=regular-widthClass=compact" constant="25"/>
                             </constraint>
                             <constraint firstAttribute="centerX" secondItem="57u-86-svD" secondAttribute="centerX" id="PWL-2U-qwk"/>
+                            <constraint firstItem="pta-qa-boK" firstAttribute="top" secondItem="wli-MT-7tw" secondAttribute="bottom" constant="50" id="ayd-9e-3KY"/>
                             <constraint firstItem="faA-ur-qb3" firstAttribute="leading" secondItem="cug-Lw-oE8" secondAttribute="leadingMargin" constant="25" id="gV8-mj-UVp"/>
                             <constraint firstItem="GmD-zw-Nm8" firstAttribute="top" secondItem="1mf-JU-dy3" secondAttribute="bottom" constant="50" id="rUr-go-H7A">
                                 <variation key="heightClass=regular-widthClass=compact" constant="50"/>
@@ -165,6 +176,7 @@
                                 <exclude reference="wli-MT-7tw"/>
                                 <exclude reference="57u-86-svD"/>
                                 <exclude reference="faA-ur-qb3"/>
+                                <exclude reference="pta-qa-boK"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="BJY-gG-JZ8"/>
@@ -173,6 +185,8 @@
                                 <exclude reference="gV8-mj-UVp"/>
                                 <exclude reference="CKe-cg-Kn3"/>
                                 <exclude reference="EFF-Qk-DIA"/>
+                                <exclude reference="3h8-b9-YJ6"/>
+                                <exclude reference="ayd-9e-3KY"/>
                                 <exclude reference="PWL-2U-qwk"/>
                                 <exclude reference="52z-sF-1OG"/>
                             </mask>
@@ -183,6 +197,7 @@
                                 <include reference="wli-MT-7tw"/>
                                 <include reference="57u-86-svD"/>
                                 <include reference="faA-ur-qb3"/>
+                                <include reference="pta-qa-boK"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="BJY-gG-JZ8"/>
@@ -191,6 +206,8 @@
                                 <include reference="gV8-mj-UVp"/>
                                 <include reference="CKe-cg-Kn3"/>
                                 <include reference="EFF-Qk-DIA"/>
+                                <include reference="3h8-b9-YJ6"/>
+                                <include reference="ayd-9e-3KY"/>
                                 <include reference="PWL-2U-qwk"/>
                                 <include reference="52z-sF-1OG"/>
                             </mask>
@@ -229,5 +246,6 @@
         <image name="Rabbit" width="100" height="100"/>
         <image name="Snail" width="100" height="100"/>
         <image name="Stop" width="50" height="50"/>
+        <image name="Vader" width="100" height="100"/>
     </resources>
 </document>
