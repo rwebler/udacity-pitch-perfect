@@ -13,37 +13,37 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
 
     @IBOutlet weak var microphoneButton: UIButton!
     
+    @IBOutlet weak var stopButton: UIButton!
+    
     @IBOutlet weak var recordingLabel: UILabel!
     
-    @IBOutlet weak var stopButton: UIButton!
+    @IBOutlet weak var pausedLabel: UILabel!
     
     var audioRecorder:AVAudioRecorder!
     
     var recordedAudio: RecordedAudio!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
+    var recordingState: String!
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        // Do any additional setup after loading the view, typically from a nib.
-        stopButton.hidden = true
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        setUIElementsToPaused("stopped")
     }
 
     @IBAction func recordAction(sender: UIButton) {
-        recordingLabel.hidden = false
-        stopButton.hidden = false
-        stopButton.enabled = true
-        microphoneButton.enabled = false
-        
-        println("In recordAudio")
+        println("In recordAction")
+        if (recordingState == "stopped") {
+            startNewRecording()
+        } else if (recordingState == "paused") {
+            restartRecording()
+        } else if (recordingState == "recording") {
+            pauseRecording()
+        }
+    }
+    
+    func startNewRecording() {
+        setUIElementsToRecording()
         
         let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
         
@@ -63,13 +63,26 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         audioRecorder.delegate = self
         audioRecorder.prepareToRecord()
         audioRecorder.record()
+        
+        println("In startNewRecording")
+    }
+    
+    func pauseRecording() {
+        setUIElementsToPaused("paused")
+        audioRecorder.pause()
+        
+        println("In pauseRecording")
+    }
+    
+    func restartRecording() {
+        setUIElementsToRecording()
+        audioRecorder.record()
+        
+        println("In restartRecording")
     }
 
     @IBAction func stopAction(sender: UIButton) {
-        recordingLabel.hidden = true
-        stopButton.hidden = true
-        stopButton.enabled = false
-        microphoneButton.enabled = true
+        setUIElementsToPaused("stopped")
         
         println("In stopAction")
         
@@ -80,14 +93,12 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     
     func audioRecorderDidFinishRecording(recorder: AVAudioRecorder!, successfully flag: Bool) {
         if (flag) {
-            recordedAudio = RecordedAudio()
-            recordedAudio.filePathUrl = recorder.url
-            recordedAudio.title = recorder.url.lastPathComponent
+            recordedAudio = RecordedAudio(filePathUrl: recorder.url, title: recorder.url.lastPathComponent!)
             self.performSegueWithIdentifier("stopRecording", sender: recordedAudio)
         } else {
             println("Recording failed")
-            stopButton.hidden = true
-            microphoneButton.enabled = true
+            
+            setUIElementsToPaused("stopped")
             
         }
     }
@@ -98,6 +109,24 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
             let data = sender as! RecordedAudio
             playSoundsVC.receivedAudio = data
         }
+    }
+    
+    func setUIElementsToPaused(recordingState: String?) {
+        recordingLabel.hidden = true
+        pausedLabel.hidden = false
+        stopButton.hidden = true
+        stopButton.enabled = false
+        
+        self.recordingState = recordingState
+    }
+    
+    func setUIElementsToRecording() {
+        recordingLabel.hidden = false
+        pausedLabel.hidden = true
+        stopButton.hidden = false
+        stopButton.enabled = true
+        
+        recordingState = "recording"
     }
 }
 

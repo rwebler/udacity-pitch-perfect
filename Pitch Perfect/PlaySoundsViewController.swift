@@ -32,7 +32,6 @@ class PlaySoundsViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        // Do any additional setup after loading the view, typically from a nib.
         snailButton.enabled = true
     }
 
@@ -43,18 +42,18 @@ class PlaySoundsViewController: UIViewController {
     
     func playAudio(atRate: Float) {
         audioPlayer.stop()
+        audioEngine.stop()
+        audioEngine.reset()
         audioPlayer.rate = atRate
         audioPlayer.currentTime = 0.0
         audioPlayer.play()
     }
     
-    @IBAction func snailSoundButtonAction(sender: UIButton) {
-        //snailButton.enabled = false
+    @IBAction func playSlowAudio(sender: UIButton) {
         playAudio(0.5)
     }
 
-    @IBAction func rabbitSoundButtonAction(sender: UIButton) {
-        //rabbitButton.enabled = false
+    @IBAction func playFastAudio(sender: UIButton) {
         playAudio(1.5)
     }
 
@@ -69,7 +68,7 @@ class PlaySoundsViewController: UIViewController {
     @IBAction func stopPlaybackButtonAction(sender: UIButton) {
         
         audioPlayer.stop()
-        audioEngine.stop();
+        audioEngine.stop()
         audioEngine.reset()
     }
     
@@ -93,14 +92,4 @@ class PlaySoundsViewController: UIViewController {
         
         audioPlayerNode.play()
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
