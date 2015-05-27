@@ -61,6 +61,50 @@ class PlaySoundsViewController: UIViewController {
         playAudioWithVariablePitch(1000)
     }
 
+    @IBAction func playEchoAudio(sender: UIButton) {
+        audioPlayer.stop()
+        audioEngine.stop()
+        audioEngine.reset()
+        
+        var audioPlayerNode = AVAudioPlayerNode()
+        audioEngine.attachNode(audioPlayerNode)
+        
+        var echoEffect = AVAudioUnitDelay()
+        echoEffect.wetDryMix = 50
+        audioEngine.attachNode(echoEffect)
+        
+        audioEngine.connect(audioPlayerNode, to: echoEffect, format: nil)
+        audioEngine.connect(echoEffect, to: audioEngine.outputNode, format: nil)
+        
+        audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
+        audioEngine.startAndReturnError(nil)
+        
+        audioPlayerNode.play()
+    }
+    
+    
+    @IBAction func playReverbAudio(sender: UIButton) {
+        audioPlayer.stop()
+        audioEngine.stop()
+        audioEngine.reset()
+        
+        var audioPlayerNode = AVAudioPlayerNode()
+        audioEngine.attachNode(audioPlayerNode)
+        
+        var reverbEffect = AVAudioUnitReverb()
+        reverbEffect.loadFactoryPreset(AVAudioUnitReverbPreset.Cathedral)
+        reverbEffect.wetDryMix = 50
+        audioEngine.attachNode(reverbEffect)
+        
+        audioEngine.connect(audioPlayerNode, to: reverbEffect, format: nil)
+        audioEngine.connect(reverbEffect, to: audioEngine.outputNode, format: nil)
+        
+        audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
+        audioEngine.startAndReturnError(nil)
+        
+        audioPlayerNode.play()
+    }
+    
     @IBAction func playDarthvaderAudio(sender: UIButton) {
         playAudioWithVariablePitch(-1000)
     }
