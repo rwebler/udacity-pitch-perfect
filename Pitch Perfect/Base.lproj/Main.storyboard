@@ -267,9 +267,6 @@
                             </mask>
                         </variation>
                     </view>
-                    <connections>
-                        <outlet property="snailButton" destination="GmD-zw-Nm8" id="7He-KR-AnJ"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IKi-cu-Dlr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

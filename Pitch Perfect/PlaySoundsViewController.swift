@@ -11,8 +11,6 @@ import AVFoundation
 
 class PlaySoundsViewController: UIViewController {
 
-    @IBOutlet weak var snailButton: UIButton!
-    
     var audioPlayer : AVAudioPlayer!
     var receivedAudio : RecordedAudio!
     
@@ -28,16 +26,6 @@ class PlaySoundsViewController: UIViewController {
         
         audioEngine = AVAudioEngine()
         audioFile = AVAudioFile(forReading: receivedAudio.filePathUrl, error: nil)
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        snailButton.enabled = true
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func playAudio(atRate: Float) {
@@ -60,6 +48,10 @@ class PlaySoundsViewController: UIViewController {
     @IBAction func playChipmunkAudio(sender: UIButton) {
         playAudioWithVariablePitch(1000)
     }
+    
+    @IBAction func playDarthvaderAudio(sender: UIButton) {
+        playAudioWithVariablePitch(-1000)
+    }
 
     @IBAction func playEchoAudio(sender: UIButton) {
         audioPlayer.stop()
@@ -70,6 +62,8 @@ class PlaySoundsViewController: UIViewController {
         audioEngine.attachNode(audioPlayerNode)
         
         var echoEffect = AVAudioUnitDelay()
+        
+        //keeping echo at 50% for better sound
         echoEffect.wetDryMix = 50
         audioEngine.attachNode(echoEffect)
         
@@ -92,8 +86,11 @@ class PlaySoundsViewController: UIViewController {
         audioEngine.attachNode(audioPlayerNode)
         
         var reverbEffect = AVAudioUnitReverb()
+        
+        //applying a preset and keeping reverb at 50%
         reverbEffect.loadFactoryPreset(AVAudioUnitReverbPreset.Cathedral)
         reverbEffect.wetDryMix = 50
+        
         audioEngine.attachNode(reverbEffect)
         
         audioEngine.connect(audioPlayerNode, to: reverbEffect, format: nil)
@@ -103,10 +100,6 @@ class PlaySoundsViewController: UIViewController {
         audioEngine.startAndReturnError(nil)
         
         audioPlayerNode.play()
-    }
-    
-    @IBAction func playDarthvaderAudio(sender: UIButton) {
-        playAudioWithVariablePitch(-1000)
     }
     
     @IBAction func stopPlaybackButtonAction(sender: UIButton) {

@@ -23,6 +23,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     
     var recordedAudio: RecordedAudio!
     
+    // three possible states: stopped, recording and paused
     var recordingState: String!
     
     override func viewWillAppear(animated: Bool) {
@@ -33,6 +34,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
 
     @IBAction func recordAction(sender: UIButton) {
         println("In recordAction")
+        
         if (recordingState == "stopped") {
             startNewRecording()
         } else if (recordingState == "paused") {
@@ -45,7 +47,8 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     func startNewRecording() {
         setUIElementsToRecording()
         
-        let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
+        //saving the audio file in the temp (caches) directory
+        let dirPath = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)[0] as! String
         
         let currentDateTime = NSDate()
         let formatter = NSDateFormatter()
@@ -111,12 +114,14 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         }
     }
     
+    //methods for showing and hiding buttons and labels, called from some methods above
+    
     func setUIElementsToPaused(recordingState: String?) {
         recordingLabel.hidden = true
         pausedLabel.hidden = false
         stopButton.hidden = true
-        stopButton.enabled = false
         
+        //sets the recording state to stopped or paused
         self.recordingState = recordingState
     }
     
@@ -124,7 +129,6 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         recordingLabel.hidden = false
         pausedLabel.hidden = true
         stopButton.hidden = false
-        stopButton.enabled = true
         
         recordingState = "recording"
     }
