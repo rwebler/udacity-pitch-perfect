@@ -103,6 +103,10 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
             
             setUIElementsToPaused("stopped")
             
+            //adapted from http://stackoverflow.com/questions/24022479/how-would-i-create-a-uialertview-in-swift
+            var alert = UIAlertController(title: "Error", message: "Recording failed. Please try again.", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
         }
     }
     

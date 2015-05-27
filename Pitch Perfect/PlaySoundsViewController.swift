@@ -29,9 +29,7 @@ class PlaySoundsViewController: UIViewController {
     }
     
     func playAudio(atRate: Float) {
-        audioPlayer.stop()
-        audioEngine.stop()
-        audioEngine.reset()
+        stopPlayback()
         audioPlayer.rate = atRate
         audioPlayer.currentTime = 0.0
         audioPlayer.play()
@@ -54,9 +52,7 @@ class PlaySoundsViewController: UIViewController {
     }
 
     @IBAction func playEchoAudio(sender: UIButton) {
-        audioPlayer.stop()
-        audioEngine.stop()
-        audioEngine.reset()
+        stopPlayback()
         
         var audioPlayerNode = AVAudioPlayerNode()
         audioEngine.attachNode(audioPlayerNode)
@@ -78,9 +74,7 @@ class PlaySoundsViewController: UIViewController {
     
     
     @IBAction func playReverbAudio(sender: UIButton) {
-        audioPlayer.stop()
-        audioEngine.stop()
-        audioEngine.reset()
+        stopPlayback()
         
         var audioPlayerNode = AVAudioPlayerNode()
         audioEngine.attachNode(audioPlayerNode)
@@ -103,16 +97,11 @@ class PlaySoundsViewController: UIViewController {
     }
     
     @IBAction func stopPlaybackButtonAction(sender: UIButton) {
-        
-        audioPlayer.stop()
-        audioEngine.stop()
-        audioEngine.reset()
+        stopPlayback()
     }
     
     func playAudioWithVariablePitch(pitch: Float){
-        audioPlayer.stop()
-        audioEngine.stop()
-        audioEngine.reset()
+        stopPlayback()
         
         var audioPlayerNode = AVAudioPlayerNode()
         audioEngine.attachNode(audioPlayerNode)
@@ -128,5 +117,11 @@ class PlaySoundsViewController: UIViewController {
         audioEngine.startAndReturnError(nil)
         
         audioPlayerNode.play()
+    }
+    
+    func stopPlayback() {
+        audioPlayer.stop()
+        audioEngine.stop()
+        audioEngine.reset()
     }
 }
